@@ -1,0 +1,52 @@
+.chat-form-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+
+    .icon-btn {
+        background-color: #fff;
+        border-radius: 4px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        border: none;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+
+        .custom-input-text {
+            width: 100%;
+
+            input {
+                border: none;
+                outline: none;
+                width: 100%;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<div class="chat-box-container">
+    <app-chat-box-header></app-chat-box-header>
+    <div class="scroll-container" #scrollContainer>
+        <app-chat-box-body [messages]="messageList"></app-chat-box-body>
+    </div>
+    <app-chat-box-form (submit)="addMessage($event)"></app-chat-box-form>
+</div>

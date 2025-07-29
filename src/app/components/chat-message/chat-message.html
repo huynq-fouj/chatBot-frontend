@@ -1,0 +1,13 @@
+<div class="chat-message">
+    <div class="chat-message-container">
+        <div class="sender-name" [class.bot]="message?.sender === 'bot'">{{ getSenderName() }}</div>
+        <div class="message-container" [class.bot]="message?.sender === 'bot'">
+            <img
+                [src]="message?.sender === 'bot' ? botAvatar : userAvatar"
+                alt="Conversation avatar"
+                class="avatar"
+            >
+            <div class="message-box" [innerHTML]="message?.content | safeHtml"></div>
+        </div>
+    </div>
+</div>  
