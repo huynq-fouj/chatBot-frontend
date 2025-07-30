@@ -7,7 +7,22 @@
                 alt="Conversation avatar"
                 class="avatar"
             >
-            <div class="message-box" #messageBox [innerHTML]="message?.content | safeHtml"></div>
+            <div class="message-box-container">
+                <ng-container *ngFor="let preview of previewFiles;">
+                    <div class="message-box">
+                        <div class="file-name">{{ preview.name }}</div>
+                        <img class="preview-image" *ngIf="preview.src" [src]="preview.src" alt="">
+                    </div>
+                </ng-container>
+                <div *ngIf="message?.content" class="message-box" #messageBox [innerHTML]="message?.content | safeHtml"></div>
+                <div *ngIf="message?.responding && !message?.content" class="message-box">
+                    <div class="responding-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>  
+</div>

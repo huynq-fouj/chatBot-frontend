@@ -34,6 +34,10 @@ export class EventsService {
     this.broadcast('open-image', { imageUrl });
   }
 
+  notify(detail: any) {
+    this.broadcast('bot-notify', detail);
+  }
+
   custom(eventName: string, detail: any) {
     this.broadcast(eventName, detail);
   }

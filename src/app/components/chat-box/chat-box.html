@@ -3,5 +3,5 @@
     <div class="scroll-container" #scrollContainer>
         <app-chat-box-body [messages]="messageList"></app-chat-box-body>
     </div>
-    <app-chat-box-form (submit)="addMessage($event)"></app-chat-box-form>
+    <app-chat-box-form (submit)="addMessage($event)" [disabled]="!!messageList[messageList.length - 1].responding"></app-chat-box-form>
 </div>

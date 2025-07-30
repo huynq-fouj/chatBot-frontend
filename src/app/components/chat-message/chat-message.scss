@@ -39,14 +39,59 @@ $avatarSize: 32px;
             border-radius: 9999px;
         }
 
-        .message-box {
-            border-radius: 8px;
-            max-width: 100%;
-            padding: 8px;
-            color: #333;
-            background-color: #f0f0f0;
-            max-width: calc(100% - 2 * ($avatarSize + 16px));
+        .message-box-container {
+            max-width: calc(100% - 2 * ($avatarSize + 8px));
+
+            .message-box {
+                border-radius: 8px;
+                max-width: 100%;
+                padding: 8px;
+                color: #333;
+                background-color: #f0f0f0;
+                font-size: 14px;
+                margin-bottom: 2px;
+                width: max-content;
+                min-height: 36px;
+
+                .file-name {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: 100%;
+                }
+
+                &:hover {
+                    .file-name {
+                        text-decoration: underline;
+                    }
+                }
+
+
+                &:has(.preview-image) {
+                    max-width: 136px;
+                }
+
+                .preview-image {
+                    width: 100%;
+                    height: 75px;
+                    border-radius: 8px;
+                    margin-right: 0;
+                    margin-left: auto;
+                    object-fit: cover;
+                }
+            }
         }
+
+        &:not(.bot) {
+            .message-box {
+                margin-right: 0;
+                margin-left: auto;
+            }
+        }
+
 
         &.bot {
             flex-direction: row;
@@ -55,5 +100,54 @@ $avatarSize: 32px;
                 border-radius: 0;
             }
         }
+    }
+}
+
+.message-box:has(.responding-animation) {
+    display: flex;
+    align-items: flex-end;
+}
+
+.responding-animation {
+    padding: 0 8px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+
+    span {
+        width: 10px;
+        height: 10px;
+        background-color: #cccccc;
+        border-radius: 10px;
+        animation: respondingAnimation 0.6s ease infinite;
+
+        &:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        &:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    }
+}
+
+@keyframes respondingAnimation {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-8px);
+        opacity: 0.7;
+    }
+}
+
+:host ::ng-deep .message-box {
+    img {
+        width: 100%;
     }
 }
