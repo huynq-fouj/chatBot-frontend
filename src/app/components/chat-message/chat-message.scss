@@ -52,6 +52,7 @@ $avatarSize: 32px;
                 margin-bottom: 2px;
                 width: max-content;
                 min-height: 36px;
+                box-sizing: border-box;
 
                 .file-name {
                     display: -webkit-box;

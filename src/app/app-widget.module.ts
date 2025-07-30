@@ -13,8 +13,13 @@ import { ELEMENT_NAME } from "./constants";
 export class AppWidgetModule {
 
   constructor(private injector: Injector) {
-    const el = createCustomElement(AppWidget, { injector: this.injector });
-    customElements.define(ELEMENT_NAME, el);
+    if (!customElements.get(ELEMENT_NAME)) {
+      const el = createCustomElement(AppWidget, { injector: this.injector });
+      customElements.define(ELEMENT_NAME, el);
+      console.log(`Custom element "${ELEMENT_NAME}" defined successfully.`);
+    } else {
+      console.warn(`Custom element with name "${ELEMENT_NAME}" is already defined.`);
+    }
   }
 
   ngDoBootstrap(appRef: ApplicationRef) {

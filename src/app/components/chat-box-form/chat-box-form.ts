@@ -29,7 +29,10 @@ export class ChatBoxForm {
     private previewService: PreviewsService
   ) {}
 
-  submitMessage() {
+  submitMessage(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (this.disabled) {
       return;
     }
@@ -41,11 +44,13 @@ export class ChatBoxForm {
       };
       this.submit.emit(message);
       this.resetForm();
+      const textarea = event.target as HTMLTextAreaElement;
+      this.autoResize({ target: textarea });
       this.eventsService.submitMessage(message);
     }
   }
 
-  autoResize(event: Event): void {
+  autoResize(event: any): void {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto';
     textarea.style.height = Math.min(textarea.scrollHeight, textarea.scrollHeight) + 'px';
