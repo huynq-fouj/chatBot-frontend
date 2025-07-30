@@ -32,21 +32,44 @@
     .content-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
         flex: 1;
 
         .custom-input-text {
             width: 100%;
+            font-size: 14px;
 
-            input {
+            textarea {
                 border: none;
                 outline: none;
                 width: 100%;
+                resize: none;
+                font-size: 14px;
+                overflow: hidden;
+                line-height: 1.5rem;
+                max-height: calc(1.5rem * 3);
 
                 &:focus {
                     outline: none;
                 }
+
+                &::-webkit-scrollbar {
+                    width: 6px;
+                    border-radius: 9999px;
+                    background-color: #f5f9ff;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 9999px;
+                    background-color: #0074bd;
+                }
             }
+        }
+
+        .file-preview-container {
+            margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-self: flex-start;
         }
     }
 }

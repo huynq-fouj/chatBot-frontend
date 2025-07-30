@@ -7,7 +7,7 @@
                 alt="Conversation avatar"
                 class="avatar"
             >
-            <div class="message-box" [innerHTML]="message?.content | safeHtml"></div>
+            <div class="message-box" #messageBox [innerHTML]="message?.content | safeHtml"></div>
         </div>
     </div>
 </div>  

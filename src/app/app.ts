@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChatBox } from "./components/chat-box/chat-box";
 import { CommonModule } from '@angular/common';
 import { ConversationService } from './services/conversation.service';
+import { EventsService } from './services/events.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,28 @@ import { ConversationService } from './services/conversation.service';
   styleUrl: './app.scss',
   imports: [ChatBox, CommonModule]
 })
-export class App implements OnInit {
+export class App implements OnInit, OnDestroy {
   protected title = 'chatBot-frontend';
+  opened = false;
 
   constructor(
-    private conversationService: ConversationService
-  ) {
-    this.conversationService.setNames('Hỗ trợ EasyPos', 'User');
-  }
+    private conversationService: ConversationService,
+    private eventService: EventsService
+  ) {}
   
   ngOnInit(): void {
-    // Initialization logic can go here
+    window.addEventListener('message', this.handleParentMessage.bind(this));
+    this.eventService.ready();
+  }
+
+  private handleParentMessage(event: MessageEvent) {
+    if (event.data?.type === 'init-chat' && event.data.payload) {
+      const { botName, userName, businessType } = event.data.payload;
+      this.conversationService.setNames(botName, userName);
+    }
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('message', this.handleParentMessage.bind(this));
   }
 }
