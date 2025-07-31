@@ -32,6 +32,8 @@ export class ChatMessage implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (!this.messageBox) return;
+
     const imgs = this.messageBox.nativeElement.querySelectorAll('img');
     imgs.forEach((img: HTMLImageElement) => {
       this.renderer.listen(img, 'click', () => {

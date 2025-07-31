@@ -15,13 +15,13 @@
                     </div>
                 </ng-container>
                 <div *ngIf="message?.content" class="message-box" #messageBox [innerHTML]="message?.content | safeHtml"></div>
-                <div *ngIf="message?.responding && !message?.content" class="message-box">
+                <!-- <div *ngIf="message?.responding && !message?.content" class="message-box">
                     <div class="responding-animation">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
