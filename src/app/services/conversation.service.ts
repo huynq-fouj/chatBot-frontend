@@ -39,4 +39,8 @@ export class ConversationService {
     }
   }
 
+  getSubject() {
+    return this.state$;
+  }
+
 }
